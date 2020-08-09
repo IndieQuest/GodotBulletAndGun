@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Images/BoreSight.png" type="Texture" id=1]
+[ext_resource path="res://src/Fun/Gun/FantasyBullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Models/fantasy-rifle-2/source/rifle1.fbx" type="PackedScene" id=3]
+[ext_resource path="res://src/MachineGun/Gun.gd" type="Script" id=4]
+[ext_resource path="res://src/Fun/Gun/FantasyRifle.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Sound/SingleFire.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Models/jkm_muzzleflash/MuzzleMaterial.tres" type="Material" id=7]
+[ext_resource path="res://Assets/Models/fantasy-rifle-2/source/RifleMaterial.tres" type="Material" id=8]
+[ext_resource path="res://Assets/Models/jkm_muzzleflash/muzzleflash.obj" type="ArrayMesh" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fire"
+length = 0.24
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("rifle:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.15, 0.24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0.05 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rifle:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 180, 0 ), Vector3( 0, 180, 0 ), Vector3( -1, 180, 0 ), Vector3( 0, 180, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("rifle/bolt2:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.03, 0.24 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.039, 0.06, 0.267 ), Vector3( 0.039, 0.06, 0.206 ), Vector3( 0.039, 0.06, 0.267 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("muzzleflash:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.01, 0.05, 0.24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, false ]
+}
+
+[node name="FantasyRifle" instance=ExtResource( 3 )]
+script = ExtResource( 5 )
+
+[node name="rifle" parent="." index="0"]
+transform = Transform( -5, 0, -1.62921e-06, 0, 5, 0, 1.62921e-06, 0, -5, 0, 0, 0 )
+
+[node name="base2" parent="rifle" index="0"]
+material/0 = ExtResource( 8 )
+
+[node name="bolt2" parent="rifle" index="1"]
+transform = Transform( 1, 0, 8.52651e-14, 0, 1, 0, 0, 0, 1, 0.039, 0.06, 0.267 )
+material/0 = ExtResource( 8 )
+
+[node name="trigger2" parent="rifle" index="2"]
+material/0 = ExtResource( 8 )
+
+[node name="clip2" parent="rifle" index="3"]
+material/0 = ExtResource( 8 )
+
+[node name="muzzleflash" type="MeshInstance" parent="." index="1"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.295304, -5.02926 )
+visible = false
+mesh = ExtResource( 9 )
+material/0 = ExtResource( 7 )
+material/1 = ExtResource( 7 )
+material/2 = ExtResource( 7 )
+
+[node name="SingleFireGun" type="Spatial" parent="." index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.315639, -4.48336 )
+script = ExtResource( 4 )
+autofire = false
+bullet_res = ExtResource( 2 )
+muzzle_velocity = 2.0
+fire_rate = 4.0
+fire_sound = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+anims/fire = SubResource( 1 )
+
+[node name="DelayTimer" type="Timer" parent="." index="4"]
+
+[node name="Crosshair" type="TextureRect" parent="." index="5"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}

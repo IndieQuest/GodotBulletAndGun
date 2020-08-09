@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/MachineGunLoop.wav-bd41195f75c3a5cb338c573aa3eb5bef.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/MachineGunLoop.wav"
+dest_files=[ "res://.import/MachineGunLoop.wav-bd41195f75c3a5cb338c573aa3eb5bef.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

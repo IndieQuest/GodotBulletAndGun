@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Fonts/VCR_OSD_MONO.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 1 )
+
+[node name="Score" type="Control"]
+margin_right = 512.0
+margin_bottom = 256.0
+rect_min_size = Vector2( 512, 256 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 50
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 42.0
+margin_right = 187.0
+margin_bottom = 256.0
+custom_constants/separation = 30
+alignment = 1
+
+[node name="Title" type="Label" parent="HBoxContainer/Score"]
+margin_top = 69.0
+margin_right = 145.0
+margin_bottom = 113.0
+custom_fonts/font = SubResource( 1 )
+text = "Score"
+align = 1
+valign = 1
+
+[node name="Count" type="Label" parent="HBoxContainer/Score"]
+margin_top = 143.0
+margin_right = 145.0
+margin_bottom = 187.0
+custom_fonts/font = SubResource( 1 )
+text = "000"
+align = 1
+valign = 1
+
+[node name="Accuracy" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 237.0
+margin_right = 469.0
+margin_bottom = 256.0
+custom_constants/separation = 30
+alignment = 1
+
+[node name="Title" type="Label" parent="HBoxContainer/Accuracy"]
+margin_top = 69.0
+margin_right = 232.0
+margin_bottom = 113.0
+custom_fonts/font = SubResource( 1 )
+text = "Accuracy"
+align = 1
+valign = 1
+
+[node name="Count" type="Label" parent="HBoxContainer/Accuracy"]
+margin_top = 143.0
+margin_right = 232.0
+margin_bottom = 187.0
+custom_fonts/font = SubResource( 1 )
+text = "000"
+align = 1
+valign = 1

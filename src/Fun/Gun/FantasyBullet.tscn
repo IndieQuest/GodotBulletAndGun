@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/TrailRenderScriptClass/TrailRender.gd" type="Script" id=1]
+[ext_resource path="res://src/MachineGun/Bullet.gd" type="Script" id=2]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.05
+height = 3.0
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.438144, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.894118, 0.882353, 0.0941176, 0.662745 )
+emission_enabled = true
+emission = Color( 0.92549, 0.85098, 0.0745098, 1 )
+emission_energy = 13.13
+emission_operator = 0
+emission_on_uv2 = false
+
+[node name="FantasyBullet" type="RigidBody" groups=[
+"Bullet",
+]]
+mass = 0.01
+gravity_scale = 0.0
+can_sleep = false
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="TrailRenderer" type="Spatial" parent="."]
+script = ExtResource( 1 )
+width = 0.1
+width_curve = SubResource( 2 )
+max_points = 10
+material = SubResource( 3 )
